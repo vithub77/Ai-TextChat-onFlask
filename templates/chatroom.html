@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI чат-бот</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='chat_style.css')}}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-messages">
+            <div class="message bot-message">Привет! Я AI-бот. Чем могу помочь?</div>
+        </div>
+        <div class="input-container">
+            <input class="input-field" type="text" id="message-input" placeholder="Введите сообщение...">
+            <button class="send-button" id="send-button">Отправить</button>
+    </div>
+</div>
+<script src="{{url_for('static', filename='chatroom_fetch.js')}}"></script>
+</body>
+</html>
