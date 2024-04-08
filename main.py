@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 from typing import List
 
+from message_class import Message
+
 app = Flask(__name__)
-message: List = []
+
+messages: List[Message] = [Message('user1', 'text-test'), Message('user2', 'text2-test')]
 
 
 @app.route('/', methods=['GET'])
@@ -17,8 +20,9 @@ def post_message():
 
 @app.route('/requestmessage', methods=['FETCH'])
 def request_message():
-    print(request.json)
-    return {'ping': 'pong'}
+    msg = [m.to_dict() for m in messages if m.id > request.json['last_message_id']]
+    messages.append(Message.generator_messages())
+    return msg
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,4 +1,5 @@
 //const messageInput = document.getElementById("message-input")
+const messageContainer = document.querySelector('.chat-messages')
 var last_message_id = -1
 
 
@@ -8,8 +9,16 @@ async function fetchMessage() {
     var response = await fetch('/requestmessage', {method: 'FETCH',
                                                    body: message_id,
                                                    headers: {'Content-Type': 'application/json'}})
-    var response_data = await response.json()
-    console.log(response_data)}
+   var response_data = await response.json()
+   console.log(response_data)
+
+   response_data.forEach((element) => {last_message_id = Math.max(last_message_id, element.id)
+   var msg = document.createElement('div')
+   msg.classList.add('bot-message')
+   msg.classList.add('message')
+   msg.textContent = element.text
+   messageContainer.appendChild(msg)})
+   }
 
 setInterval(fetchMessage, 1500)
 
