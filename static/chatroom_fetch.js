@@ -1,14 +1,17 @@
 //const messageInput = document.getElementById("message-input")
+var last_message_id = -1
 
-function fetchMessage() {
-    console.log('requested_message')
-    fetch('/requestmessage', {method: 'FETCH', headers: {
-      "Content-Type": "application/json"}, body: JSON.stringify({
-      message: messageText
-    })})
-                        }
 
-setInterval(fetchMessage, 1000)
+async function fetchMessage() {
+    console.log('requested_message!!!');
+    var message_id = JSON.stringify({'last_message_id': last_message_id})
+    var response = await fetch('/requestmessage', {method: 'FETCH',
+                                                   body: message_id,
+                                                   headers: {'Content-Type': 'application/json'}})
+    var response_data = await response.json()
+    console.log(response_data)}
+
+setInterval(fetchMessage, 1500)
 
 
 

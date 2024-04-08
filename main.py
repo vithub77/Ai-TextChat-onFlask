@@ -17,9 +17,8 @@ def post_message():
 
 @app.route('/requestmessage', methods=['FETCH'])
 def request_message():
-    # return jsonify({'ping': 'pong'})
+    print(request.json)
     return {'ping': 'pong'}
-
 
 if __name__ == '__main__':
     app.run(debug=True)
