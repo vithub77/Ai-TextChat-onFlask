@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from typing import List
+import random
 
 from message_class import Message
 
@@ -21,7 +22,8 @@ def post_message():
 @app.route('/requestmessage', methods=['FETCH'])
 def request_message():
     msg = [m.to_dict() for m in messages if m.id > request.json['last_message_id']]
-    messages.append(Message.generator_messages())
+    if random.random() > 0.5:
+        messages.append(Message.generator_messages())
     return msg
 
 if __name__ == '__main__':

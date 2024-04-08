@@ -17,7 +17,8 @@ async function fetchMessage() {
    msg.classList.add('bot-message')
    msg.classList.add('message')
    msg.textContent = element.text
-   messageContainer.appendChild(msg)})
+   messageContainer.appendChild(msg)});
+   messageContainer.scrollTop = messageContainer.scrollHeight
    }
 
 setInterval(fetchMessage, 1500)
