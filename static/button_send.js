@@ -1,29 +1,26 @@
-const messageContainer = document.querySelector('.chat-messages')
-var last_message_id = -1
+const inputField = document.querySelector('.input-field')
 
 
-async function fetchMessage() {
-    console.log('requested_message!!!');
-    var message_id = JSON.stringify({'last_message_id': last_message_id})
-    var response = await fetch('/requestmessage', {method: 'FETCH',
-                                                   body: message_id,
-                                                   headers: {'Content-Type': 'application/json'}})
-   var response_data = await response.json()
-   console.log(response_data, 'response_data')
+inputField.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        sendData();}
+});
 
-   response_data.forEach((element) => {last_message_id = Math.max(last_message_id, element.id)
-   var msg = document.createElement('div')
-   msg.classList.add('message')
 
-   if (element.username == 'user') {msg.classList.add('user-message')}
-   else {msg.classList.add('bot-message')}
 
-   msg.textContent = element.text
-   messageContainer.appendChild(msg)});
-   messageContainer.scrollTop = messageContainer.scrollHeight
-   }
-fetchMessage()
-setInterval(fetchMessage, 1500)
+async function sendData() {
+    console.log(inputField.value);
+    var request_data = JSON.stringify({'message': inputField.value})
+
+    var response = await fetch('/postmessage', {
+                                    method: 'POST',
+                                    body: request_data,
+                                    headers: {'Content-Type': 'application/json'}
+                                    })
+    inputField.value = ''
+    var response_data = await response.json
+                            }
+
 
 
 

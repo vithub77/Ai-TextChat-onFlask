@@ -14,11 +14,11 @@
             <div class="message bot-message">Привет! Я AI-бот. Чем могу помочь? Привет! Я AI-бот. Чем могу помочь?</div>
         </div>
         <div class="input-container">
-            <form action="/" method="post">
             <input class="input-field" type="text" id="message-input" name="text" placeholder="Введите сообщение...">
-            <button type="submit" value="Submit" class="send-button" id="send-button">Отправить</button></form>
+            <button type="submit" value="Submit" class="send-button" id="send-button" onclick="sendData()">Отправить</button>
     </div>
 </div>
 <script src="{{url_for('static', filename='chatroom_fetch.js')}}"></script>
+<script src="{{url_for('static', filename='button_send.js')}}"></script>
 </body>
 </html>

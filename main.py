@@ -11,22 +11,18 @@ messages: List[Message] = [Message('user1', 'text-test'), Message('user2', 'text
 
 @app.route('/', methods=['GET', 'POST'])
 def get_chatroom():
-    if request.method == 'POST':
-        print(request.form)
-        r = make_response('Message accept!')
-        r.headers['Content-Type'] = 'text/plain'
-        messages.append(Message(username='user', text=request.form['text']))
     return render_template('chatroom.html')
 
 
 @app.route('/postmessage', methods=['POST'])
 def post_message():
-    print('hello from backend')
-    if request.form:
-        print(request.form)
-    r = make_response('Message accept!')
-    r.headers['Content-Type'] = 'text/plain'
-    return r
+    if request.method == 'POST':
+        print(request.json['message'], 'request.get_json()')
+        r = make_response('Message accept!')
+        r.headers['Content-Type'] = 'text/plain'
+        messages.append(Message(username='user', text=request.json['message']))
+        # .....messages.append(Message(username='bot', text=request.json['message']))
+        return {}
 
 
 @app.route('/requestmessage', methods=['FETCH'])
