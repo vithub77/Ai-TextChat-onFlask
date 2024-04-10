@@ -49,7 +49,7 @@ body {
 }
 .input-field {
     flex-grow: 1;
-    margin-right: 10px;
+    margin-right: 300px;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;

@@ -14,13 +14,13 @@ async function fetchMessage() {
 
    response_data.forEach((element) => {last_message_id = Math.max(last_message_id, element.id)
    var msg = document.createElement('div')
-   msg.classList.add('bot-message')
    msg.classList.add('message')
+   msg.classList.add('bot-message')
    msg.textContent = element.text
    messageContainer.appendChild(msg)});
    messageContainer.scrollTop = messageContainer.scrollHeight
    }
-
+fetchMessage()
 setInterval(fetchMessage, 1500)
 
 
