@@ -3,6 +3,7 @@ const inputField = document.querySelector('.input-field')
 
 inputField.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
+//        event.preventDefault()
         sendData();}
 });
 
@@ -11,14 +12,15 @@ inputField.addEventListener('keydown', function(event) {
 async function sendData() {
     console.log(inputField.value);
     var request_data = JSON.stringify({'message': inputField.value})
+    inputField.value = ''
 
     var response = await fetch('/postmessage', {
                                     method: 'POST',
                                     body: request_data,
                                     headers: {'Content-Type': 'application/json'}
                                     })
-    inputField.value = ''
     var response_data = await response.json
+//    fetchMessage()
                             }
 
 

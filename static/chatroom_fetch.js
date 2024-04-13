@@ -8,22 +8,26 @@ async function fetchMessage() {
     var response = await fetch('/requestmessage', {method: 'FETCH',
                                                    body: message_id,
                                                    headers: {'Content-Type': 'application/json'}})
-   var response_data = await response.json()
-   console.log(response_data, 'response_data')
+    var response_data = await response.json()
+    console.log(response_data, 'response_data')
 
-   response_data.forEach((element) => {last_message_id = Math.max(last_message_id, element.id)
-   var msg = document.createElement('div')
-   msg.classList.add('message')
+    response_data.forEach((element) => {
+    if (last_message_id < element.id) {
+    last_message_id = Math.max(last_message_id, element.id)
+    var msg = document.createElement('div')
+    msg.classList.add('message')
 
-   if (element.username == 'user') {msg.classList.add('user-message')}
-   else {msg.classList.add('bot-message')}
+    if (element.username == 'user') {msg.classList.add('user-message')}
+    else {msg.classList.add('bot-message')}
 
-   msg.textContent = element.text
-   messageContainer.appendChild(msg)});
-   messageContainer.scrollTop = messageContainer.scrollHeight
-   }
+//    msg.textContent = element.text
+    msg.innerHTML = element.text
+    messageContainer.appendChild(msg)}});
+
+    messageContainer.scrollTop = messageContainer.scrollHeight
+    }
 fetchMessage()
-setInterval(fetchMessage, 1500)
+setInterval(fetchMessage, 5000)
 
 
 
