@@ -1,5 +1,5 @@
 # pip install -U g4f[all]
-# ip install curl_cffi
+# pip install curl_cffi
 import g4f.models
 from g4f.client import Client
 
