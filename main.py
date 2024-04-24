@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, session
 from typing import List
 import random
 import markdown
@@ -50,4 +50,7 @@ async def request_message():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, threaded=True)
+    app.run(
+        # debug=True,
+        # threaded=True
+    )

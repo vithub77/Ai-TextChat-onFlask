@@ -21,7 +21,7 @@ body {
     }
 .chat-messages {
     padding: 10px;
-    height: 542px;
+    height: 512px;
     overflow-y: scroll;
 }
 .message {
